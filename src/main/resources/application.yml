@@ -1,0 +1,16 @@
+server:
+  port: 9090
+
+spring:
+  application:
+    name: flikkit-admin-server
+  security:
+    user:
+      name: admin
+      password: ${ADMIN_SERVER_PASSWORD:admin}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'

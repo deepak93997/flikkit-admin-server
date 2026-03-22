@@ -4,6 +4,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.Customizer;
+import org.springframework.security.config.annotation.web.configurers.HeadersConfigurer;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
 import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
@@ -33,6 +35,7 @@ public class SecurityConfig {
         http
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(new AntPathRequestMatcher(adminPath + "/assets/**")).permitAll()
+                        .requestMatchers(new AntPathRequestMatcher(adminPath + "/favicon.ico")).permitAll()
                         .requestMatchers(new AntPathRequestMatcher(adminPath + "/login")).permitAll()
                         .requestMatchers(new AntPathRequestMatcher("/actuator/health/**")).permitAll()
                         .requestMatchers(new AntPathRequestMatcher("/actuator/info")).permitAll()
@@ -42,6 +45,7 @@ public class SecurityConfig {
                         .loginPage(adminPath + "/login")
                         .successHandler(successHandler)
                 )
+                .httpBasic(Customizer.withDefaults())
                 .logout(logout -> logout
                         .logoutUrl(adminPath + "/logout")
                 )
@@ -54,7 +58,7 @@ public class SecurityConfig {
                         )
                 )
                 .headers(headers -> headers
-                        .frameOptions(frame -> frame.sameOrigin())
+                        .frameOptions(HeadersConfigurer.FrameOptionsConfig::sameOrigin)
                         .contentTypeOptions(content -> {})
                         .xssProtection(xss -> {})
                         .httpStrictTransportSecurity(hsts -> hsts

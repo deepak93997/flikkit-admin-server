@@ -1,5 +1,6 @@
 server:
   port: ${PORT:9090}
+  forward-headers-strategy: framework
   shutdown: graceful
   servlet:
     session:
@@ -21,6 +22,7 @@ spring:
       ui:
         title: Flikkit Admin
         brand: "<img src='assets/img/icon-spring-boot-admin.svg'><span>Flikkit Admin</span>"
+        public-url: ${ADMIN_PUBLIC_URL:}
 
 management:
   endpoints:

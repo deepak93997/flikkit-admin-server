@@ -1,16 +1,39 @@
 server:
   port: 9090
+  shutdown: graceful
+  servlet:
+    session:
+      cookie:
+        http-only: true
+        secure: ${ADMIN_COOKIE_SECURE:false}
 
 spring:
   application:
     name: flikkit-admin-server
+  lifecycle:
+    timeout-per-shutdown-phase: 30s
   security:
     user:
-      name: admin
+      name: ${ADMIN_SERVER_USER:admin}
       password: ${ADMIN_SERVER_PASSWORD:admin}
+  boot:
+    admin:
+      ui:
+        title: Flikkit Admin
+        brand: "<img src='assets/img/icon-spring-boot-admin.svg'><span>Flikkit Admin</span>"
 
 management:
   endpoints:
     web:
       exposure:
-        include: '*'
+        include: health, info, metrics, env, loggers, caches
+  endpoint:
+    health:
+      show-details: when-authorized
+      probes:
+        enabled: true
+
+logging:
+  level:
+    de.codecentric.boot.admin: INFO
+    com.flikkit.adminserver: INFO

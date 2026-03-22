@@ -34,4 +34,7 @@ EXPOSE 9090
 HEALTHCHECK --interval=30s --timeout=5s --retries=3 --start-period=60s \
     CMD wget -qO- http://localhost:9090/actuator/health || exit 1
 
-ENTRYPOINT ["java", "-jar", "app.jar"]
+ENTRYPOINT ["java", \
+    "-XX:+UseZGC", \
+    "-XX:MaxRAMPercentage=75.0", \
+    "-jar", "app.jar"]

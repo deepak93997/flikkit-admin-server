@@ -29,10 +29,10 @@ COPY --from=build /workspace/target/flikkit-admin-server.jar app.jar
 RUN chown -R app:app /app
 USER app
 
-EXPOSE 9090
+EXPOSE ${PORT:-9090}
 
 HEALTHCHECK --interval=30s --timeout=5s --retries=3 --start-period=60s \
-    CMD wget -qO- http://localhost:9090/actuator/health || exit 1
+    CMD wget -qO- http://localhost:${PORT:-9090}/actuator/health || exit 1
 
 ENTRYPOINT ["java", \
     "-XX:+UseZGC", \

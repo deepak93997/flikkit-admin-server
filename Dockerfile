@@ -1,5 +1,5 @@
 # ── Stage 1: Build ────────────────────────────────────────────
-FROM eclipse-temurin:21-jdk-alpine AS build
+FROM eclipse-temurin:25-jdk-alpine AS build
 
 WORKDIR /workspace
 
@@ -17,7 +17,7 @@ COPY src/ src/
 RUN ./mvnw clean package -DskipTests -q
 
 # ── Stage 2: Runtime ──────────────────────────────────────────
-FROM eclipse-temurin:21-jre-alpine
+FROM eclipse-temurin:25-jre-alpine
 LABEL maintainer="flikkit"
 
 RUN addgroup -S app && adduser -S app -G app
@@ -36,5 +36,6 @@ HEALTHCHECK --interval=30s --timeout=5s --retries=3 --start-period=60s \
 
 ENTRYPOINT ["java", \
     "-XX:+UseZGC", \
+    "-XX:+ZGenerational", \
     "-XX:MaxRAMPercentage=75.0", \
     "-jar", "app.jar"]

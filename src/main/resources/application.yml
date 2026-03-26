@@ -10,7 +10,7 @@ server:
 
 spring:
   application:
-    name: flikkit-admin-server
+    name: domzo-admin-server
   lifecycle:
     timeout-per-shutdown-phase: 30s
   security:
@@ -20,8 +20,8 @@ spring:
   boot:
     admin:
       ui:
-        title: Flikkit Admin
-        brand: "<img src='assets/img/icon-spring-boot-admin.svg'><span>Flikkit Admin</span>"
+        title: Domzo Admin
+        brand: "<img src='assets/img/icon-spring-boot-admin.svg'><span>Domzo Admin</span>"
         public-url: ${ADMIN_PUBLIC_URL:}
 
 management:
@@ -38,4 +38,4 @@ management:
 logging:
   level:
     de.codecentric.boot.admin: INFO
-    com.flikkit.adminserver: INFO
+    com.domzo.adminserver: INFO

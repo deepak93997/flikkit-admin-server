@@ -1,4 +1,4 @@
-package com.flikkit.adminserver.config;
+package com.domzo.adminserver.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

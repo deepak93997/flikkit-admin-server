@@ -11,11 +11,11 @@
         <relativePath/>
     </parent>
 
-    <groupId>com.flikkit</groupId>
-    <artifactId>flikkit-admin-server</artifactId>
+    <groupId>com.domzo</groupId>
+    <artifactId>domzo-admin-server</artifactId>
     <version>1.0.0</version>
-    <name>Flikkit Admin Server</name>
-    <description>Spring Boot Admin Server for monitoring Flikkit services</description>
+    <name>Domzo Admin Server</name>
+    <description>Spring Boot Admin Server for monitoring Domzo services</description>
 
     <properties>
         <java.version>25</java.version>
@@ -90,7 +90,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <finalName>flikkit-admin-server</finalName>
+                    <finalName>domzo-admin-server</finalName>
                     <excludes>
                         <exclude>
                             <groupId>org.projectlombok</groupId>

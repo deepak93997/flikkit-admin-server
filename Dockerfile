@@ -24,7 +24,7 @@ RUN addgroup -S app && adduser -S app -G app
 
 WORKDIR /app
 
-COPY --from=build /workspace/target/flikkit-admin-server.jar app.jar
+COPY --from=build /workspace/target/domzo-admin-server.jar app.jar
 
 RUN chown -R app:app /app
 USER app
